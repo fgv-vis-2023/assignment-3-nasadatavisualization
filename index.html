@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src = "https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+
+<label for="meteors">Choose a meteor:</label>
+<select id="meteors">
+</select>
+
+<label for="columns">Choose a column:</label>
+<select id="columns">
+</select>
+
+<!-- Svg Template -->
+<svg viewBox="0 0 1366 768" id="mainSvg">
+    <!-- Search Bar -->
+    <rect x=20 y=20 width=950 height=50 rx=15 fill="Lavender" />
+
+    <!-- Search Text -->
+    <text x=40 y=55 font-size=25 font-family="Open Sans, Helvetica" fill="Gray" id="search_text">Search</text>
+
+    <!-- Meteor Overview -->
+    <rect x=990 y=20 width=376 height=250 rx=15 fill="Lavender" />
+
+    <!-- Meteor Overview Title -->
+    <text x=1000 y=55 font-size=25 font-family="Open Sans, Helvetica" fill="Gray">Meteor Overview</text>
+
+    <!-- Meteor Overview Text -->
+    <text x=1000 y=100 font-size=20 font-family="Open Sans, Helvetica" fill="Gray">Total Meteors: 1000</text>
+    <text x=1000 y=130 font-size=20 font-family="Open Sans, Helvetica" fill="Gray">Hazardous Meteors: 354</text>
+    <text x=1000 y=160 font-size=20 font-family="Open Sans, Helvetica" fill="Gray">Closest Meteor: B43F1D</text>
+    <text x=1000 y=190 font-size=20 font-family="Open Sans, Helvetica" fill="Gray">Largest Meteor: B02G52</text>
+    <text x=1000 y=220 font-size=20 font-family="Open Sans, Helvetica" fill="Gray">Fastest Meteor: B02G52</text>
+
+    <!-- Big Picture -->
+    <rect x=20 y=90 width=950 height=658 rx=15 fill="rgb(3, 13, 41)" />
+
+    <!-- Big Picture Title -->
+    <text x=40 y=125 font-size=25 font-family="Open Sans, Helvetica" fill="Gray">Big Picture</text>
+
+    <!-- Side Bar Plot -->
+    <rect x=990 y=290 width=376 height=458 rx=15 fill="Lavender" />
+    <text x=1000 y=325 font-size=25 font-family="Open Sans, Helvetica" fill="Gray", id="sideBarTitle">Side Bar Plot</text>
+    <clipPath id="sideBarPlotClip">
+        <rect x=990 y=290 width=376 height=458 rx=15 fill="Lavender" />
+    </clipPath>
+    <g clip-path="url(#sideBarPlotClip)">
+        <g transform="translate(1000, 300)" id="sideBarPlotGroup" ></g>
+    </g>
+
+</svg>
+
+<script>
+    var column = "Absolute Magnitude"
+
+    // define a function to load the data
+    function loadData() {
+    d3.csv("nasa.csv", function(data) {
+
+        // Create Meteor Dropdown
+        d3.select("#meteors")
+            .selectAll("option")
+            .data(data)
+            .enter()
+            .append("option")
+            .text(function(d) {
+                return d.Name;
+            })
+        
+        // Create Column Dropdown
+        d3.select("#columns")
+            .selectAll("option")
+            .data(data.columns)
+            .enter()
+            .append("option")
+            .text(function(d) {
+                return d;
+            })
+
+        // Create Column Scale
+        var columnScale = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d[column])])
+            .range([0, 300])   
+        
+        // Erase previous Side Bar plot
+        d3.select("#sideBarPlotGroup").selectAll('rect').remove()
+
+        // Create Side Bar Plot
+        d3.select("#sideBarPlotGroup").selectAll('rect')
+            .data(data)
+            .enter()
+            .append('rect')
+            .attr('x', 15 )
+            .attr('y', (d, i) => 50 + i * 20 )
+            .attr('width', d => columnScale(d[column]))
+            .attr('height', 18)
+            .attr('fill', d => d["Hazardous"] == "True" ? 'firebrick' : 'green')
+        .append('title')
+            .text(d => d["Name"]);
+        
+        // Crete Side Bar Plot Title
+        d3.select("#sideBarTitle")
+            .text(column);
+    })
+    }
+
+    d3.select("#meteors").on("change", function() {
+        d3.select("#search_text").text(
+            "Meteor: " + d3.select("#meteors").node().value.toUpperCase()
+        )
+    })
+
+    d3.select("#columns").on("change", function() {
+        column = d3.select("#columns").node().value;
+        loadData();
+    })
+
+    loadData();
+</script>
+
+</body>
