@@ -80,10 +80,15 @@
                 return d;
             })
 
+        // Sort Data
+        data = data
+            .sort((a, b) => b[column] - a[column])
+            .slice(0, 19);
+
         // Create Column Scale
         var columnScale = d3.scaleLinear()
             .domain([0, d3.max(data, d => d[column])])
-            .range([0, 300])   
+            .range([0, 316]);
         
         // Erase previous Side Bar plot
         d3.select("#sideBarPlotGroup").selectAll('rect').remove()
