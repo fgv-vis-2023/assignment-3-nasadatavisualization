@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: aliceblue;
     margin: 0px;
@@ -21,6 +25,10 @@ body {
 
 .right-column {
     width: 376px;
+}
+
+#titleOv {
+    font-weight: bold;
 }
 
 svg {
@@ -68,26 +76,19 @@ button:active {
 }
 
 #meteor {
+    offset-path: path('M300,300 a10,10 0 1,1 0.01,0 z');
     animation-name: meteor;
-    animation-duration: 60s;
+    animation-duration: 4s;
     animation-iteration-count: infinite;
-    position: relative;
+    animation-timing-function: linear;
+    position: absolute;
 }
 
 @keyframes meteor {
     0% {
-        transform: translateY(0px) translateX(-100px);
-    }
-    25% {
-        transform: translateY(-200px);
-    }
-    50% {
-        transform: translateX(100px);
-    }
-    75% {
-        transform: translateY(200px);
+        offset-distance: 0%;
     }
     100% {
-        transform: translateY(0px) translateX(-100px);
+        offset-distance: 100%;
     }
 }

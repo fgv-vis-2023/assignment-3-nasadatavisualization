@@ -56,15 +56,50 @@ var column = "Absolute Magnitude"
     })
     }
 
+    // Create Event Listeners
+
+    // Meteor Dropdown
     d3.select("#meteors").on("change", function() {
-        d3.select("#search_text").text(
+        // set title
+        d3.select("#titleOv").text(
             "Meteor: " + d3.select("#meteors").node().value.toUpperCase()
         )
+
+        // set body text
+        d3.csv("nasa.csv", function(data) {
+            data = data.filter(d => d.Name == d3.select("#meteors").node().value)
+            d3.select("#body1Ov").text(
+                "Absolute Magnitude: " + data[0]["Absolute Magnitude"]
+            )
+            d3.select("#body2Ov").text(
+                "Relative Velocity: " + data[0]["Relative Velocity km per sec"].slice(0, 5) + " km/s"
+            )
+            d3.select("#body3Ov").text(
+                "Hazerdous: " + data[0]["Hazardous"]
+            )
+            d3.select("#body4Ov").text(
+                "Miss Distance: " + data[0]["Miss Dist.(Astronomical)"].slice(0, 5) + " AU"
+            )
+            d3.select("#body5Ov").text(
+                "Orbit Uncertainity: " + data[0]["Orbit Uncertainity"]
+            )
+        })
+
     })
 
+    // Column Dropdown
     d3.select("#columns").on("change", function() {
         column = d3.select("#columns").node().value;
         loadData();
+    })
+
+    // Search Button
+    d3.select("#searchButton").on("click", function() {
+        if (d3.select("#meteors").node().value == "") {
+            alert("Please select a meteor from the dropdown menu.")
+            return;
+        }
+        window.open("https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=" + d3.select("#meteors").node().value);
     })
 
     loadData();

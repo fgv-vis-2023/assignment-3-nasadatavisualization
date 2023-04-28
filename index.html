@@ -3,11 +3,19 @@
     <head>
         <title>Two-Column Layout Example</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <script src = "https://d3js.org/d3.v4.min.js"></script>
     </head>
 <body>
-
-	<div class="container">
+    <div>
+        <h1 id="title">Asteroid Tracker</h1>
+        <p> Always wanted to know how fast is going the asteroid that is going to kill us all? </p>
+        <p> Well, you are in the right place! </p>
+        <a href="#mainView">v</a>
+    </div>
+	<div class="container" id="mainView">
 		<div class="column left-column">
             <!-- Search Bar -->
             <label for="meteors">Choose an Asteroid:</label>
@@ -18,13 +26,7 @@
             <select id="columns">
             </select>
 
-            <button id="searchButton">Search</button>
-
-            <!-- Old Search Bar -->
-			<!-- <svg viewBox="0 0 950 50">
-                <rect x="0" y="0" width="950" height="50" rx="15" fill="Lavender" />
-                <text x="20" y="35" font-size="25" font-family="Open Sans, Helvetica" fill="Gray" id="search_text">Search</text>
-            </svg> -->
+            <button id="searchButton" href="w">Check in NASA</button>
 
             <!-- Big Picture -->
             <svg viewBox="0 0 950 658">
@@ -37,12 +39,12 @@
 			<!-- Asteroid Overview -->
             <svg viewBox="0 0 376 250">
                 <rect x="0" y="0" width="376" height="250" rx="15" fill="Lavender" />
-                <text x="20" y="35" font-size="25" font-family="Open Sans, Helvetica" fill="Gray">Meteor Overview</text>
-                <text x="20" y="80" font-size="20" font-family="Open Sans, Helvetica" fill="Gray">Total Meteors: 1000</text>
-                <text x="20" y="110" font-size="20" font-family="Open Sans, Helvetica" fill="Gray">Hazardous Meteors: 354</text>
-                <text x="20" y="140" font-size="20" font-family="Open Sans, Helvetica" fill="Gray">Closest Meteor: B43F1D</text>
-                <text x="20" y="170" font-size="20" font-family="Open Sans, Helvetica" fill="Gray">Largest Meteor: B02G52</text>
-                <text x="20" y="200" font-size="20" font-family="Open Sans, Helvetica" fill="Gray">Fastest Meteor: B02G52</text>
+                <text x="20" y="35" font-size="25" font-family="Open Sans, Helvetica" fill="Gray" id="titleOv">Meteor Overview</text>
+                <text x="20" y="80" font-size="20" font-family="Open Sans, Helvetica" fill="Gray" id="body1Ov">Select a meteor to see its details.</text>
+                <text x="20" y="110" font-size="20" font-family="Open Sans, Helvetica" fill="Gray" id="body2Ov"></text>
+                <text x="20" y="140" font-size="20" font-family="Open Sans, Helvetica" fill="Gray" id="body3Ov"></text>
+                <text x="20" y="170" font-size="20" font-family="Open Sans, Helvetica" fill="Gray" id="body4Ov"></text>
+                <text x="20" y="200" font-size="20" font-family="Open Sans, Helvetica" fill="Gray" id="body5Ov"></text>
             </svg>
 
             <!-- Side Bar Plot -->
