@@ -35,13 +35,22 @@ var column = "Absolute Magnitude"
         var columnScale = d3.scaleLinear()
             .domain([0, d3.max(data, d => d[column])])
             .range([0, 316-30]); // Offset to account for text
-        
 
+        var xAxis = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d[column])])
+            .range([0, 316-30])
+            .nice()
+        
         const sidebar = d3.select("#sideBarPlotGroup")
 
         // Erase previous Side Bar plot
         sidebar.selectAll('rect').remove()
         sidebar.selectAll('text').remove()
+
+        // position and populate the x-axis
+        sidebar.append('g')
+            .attr('transform', `translate(15, 432)`)
+            .call(d3.axisBottom(xAxis));
 
         // Create Side Bar Plot
         sidebar.selectAll('rect')
