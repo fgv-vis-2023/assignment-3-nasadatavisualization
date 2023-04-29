@@ -6,7 +6,7 @@ var column = "Absolute Magnitude"
     // define a function to load the data
     function loadData() {
     d3.csv("nasa.csv", function(data) {
-        // Create Meteor Dropdown
+        // Create Asteroid Dropdown
         d3.select("#meteors")
             .selectAll("option")
             .data(data)
@@ -108,11 +108,11 @@ var column = "Absolute Magnitude"
 
     // Create Event Listeners
 
-    // Meteor Dropdown
+    // Asteroid Dropdown
     d3.select("#meteors").on("change", function() {
         // set title
         d3.select("#titleOv").text(
-            "Meteor: " + d3.select("#meteors").node().value.toUpperCase()
+            "Asteroid: " + d3.select("#meteors").node().value.toUpperCase()
         )
 
         // set body text
@@ -122,22 +122,32 @@ var column = "Absolute Magnitude"
                 "Absolute Magnitude: " + data[0]["Absolute Magnitude"]
             )
             d3.select("#body2Ov").text(
-                "Relative Velocity: " + data[0]["Relative Velocity km per sec"].slice(0, 5) + " km/s"
+                "Est. Diameter (max): " + data[0]["Est Dia in KM(max)"].slice(0, 5) + " km (max)"
             )
             d3.select("#body3Ov").text(
-                "Hazerdous: " + data[0]["Hazardous"]
+                "Min. Orbit Intersection: " + data[0]["Minimum Orbit Intersection"].slice(0, 5)
             )
             d3.select("#body4Ov").text(
-                "Miss Distance: " + data[0]["Miss Dist.(Astronomical)"].slice(0, 5) + " AU"
-            )
-            d3.select("#body5Ov").text(
                 "Orbit Uncertainity: " + data[0]["Orbit Uncertainity"]
+            )
+
+            var Hazardous = data[0]["Hazardous"];
+            d3.select("#body5Ov")
+            .style("color", Hazardous == "True" ? "#c1121f" : "grey")
+            .style("font-weight", Hazardous == "True" ? "bold" : "normal")
+            .text(
+                "Hazardous: " + data[0]["Hazardous"]
             )
 
             // set orbit
             const ecc = data[0]["Eccentricity"];
             const b = Math.sqrt(1 - ecc*ecc);
             createElipse(b);
+
+            // position sun
+            const perihelion = data[0]["Perihelion Distance"];
+            d3.select("#sun")
+                .attr("x", 90 + perihelion*250)
         })
 
     })
@@ -151,7 +161,7 @@ var column = "Absolute Magnitude"
     // Search Button
     d3.select("#searchButton").on("click", function() {
         if (d3.select("#meteors").node().value == "") {
-            alert("Please select a meteor from the dropdown menu.")
+            alert("Please select an asteroid from the dropdown menu.")
             return;
         }
         window.open("https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=" + d3.select("#meteors").node().value);

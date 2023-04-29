@@ -47,6 +47,7 @@ p {
 
 .circle:hover {
     background-color: #007ea7;
+    box-shadow: 0 10px 20px 5px #ccc;
 }
 
 .circle:active {
@@ -120,6 +121,7 @@ button {
 
 button:hover {
     background-color: #007ea7;
+    box-shadow: 0 10px 20px 5px #ccc;
 }
 
 button:active {
@@ -127,10 +129,14 @@ button:active {
     color: #001233;
 }
 
+#sun {
+    filter: drop-shadow( 0 0 4px rgb(255, 255, 255));
+}
+
 #asteroid {
     offset-path: path('M465,510 a300,200 0 1,1 0.01,0 z');
     animation-name: meteor;
-    animation-duration: 40s;
+    animation-duration: 80s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     position: relative;
@@ -143,4 +149,63 @@ button:active {
     100% {
         offset-distance: 100%;
     }
+}
+
+#asteroidOverview {
+    width: 356px;
+    height: 250px;
+    background-color: Lavender;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+#titleOv {
+    padding: 10px 0px 5px 0px;
+    font-size: 22px;
+    font-family: 'Open Sans', Helvetica;
+    color: Gray;
+    text-align: left;
+}
+
+#body1Ov {
+    top: 65px;
+    left: 20px;
+  }
+  
+  #body2Ov {
+    top: 95px;
+    left: 20px;
+  }
+  
+  #body3Ov {
+    top: 125px;
+    left: 20px;
+  }
+  
+  #body4Ov {
+    top: 155px;
+    left: 20px;
+  }
+  
+  #body5Ov {
+    top: 185px;
+    left: 20px;
+  }
+
+.hint {
+    display: block;
+    width: auto;
+    background: none;
+    cursor: help;
+    text-align: left;
+    font-size: 1.3em;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    color: gray;
+    margin: 0 0 0 20px;
+    min-height: 12px;
+}
+
+.hint:hover {
+    text-decoration: underline;
 }
