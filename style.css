@@ -7,6 +7,54 @@ body {
     margin: 0px;
 }
 
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    height: 680px;
+}
+
+#title {
+    font-size: 64px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    color: #003459;
+    margin: 10px;
+}
+
+p {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    color: gray;
+    margin: 10px;
+    text-align: center;
+}
+
+.circle {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #003459;
+    color: whitesmoke;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 10px;
+    text-decoration: none;
+}
+
+.circle:hover {
+    background-color: #007ea7;
+}
+
+.circle:active {
+    background-color: #90e0ef;
+    color: #001233;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -71,8 +119,13 @@ button {
     cursor: pointer;
 }
 
-button:active {
+button:hover {
     background-color: #007ea7;
+}
+
+button:active {
+    background-color: #90e0ef;
+    color: #001233;
 }
 
 #meteor {
