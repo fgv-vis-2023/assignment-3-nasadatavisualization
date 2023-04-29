@@ -127,13 +127,13 @@ button:active {
     color: #001233;
 }
 
-#meteor {
-    offset-path: path('M300,300 a10,10 0 1,1 0.01,0 z');
+#asteroid {
+    offset-path: path('M465,510 a300,200 0 1,1 0.01,0 z');
     animation-name: meteor;
-    animation-duration: 4s;
+    animation-duration: 40s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    position: absolute;
+    position: relative;
 }
 
 @keyframes meteor {

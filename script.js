@@ -1,5 +1,5 @@
 // only relevant quantitative data
-var bar_vars = ['Absolute Magnitude', 'Est Dia in KM(min)', 'Est Dia in KM(max)', 'Relative Velocity km per sec', 'Miss Dist.(kilometers)', 'Minimum Orbit Intersection', 'Jupiter Tisserand Invariant', 'Eccentricity', 'Semi Major Axis', 'Inclination', 'Asc Node Longitude', 'Orbital Period', 'Perihelion Distance', 'Perihelion Arg', 'Aphelion Dist', 'Mean Anomaly', 'Mean Motion']
+const bar_vars = ['Absolute Magnitude', 'Est Dia in KM(min)', 'Est Dia in KM(max)', 'Relative Velocity km per sec', 'Miss Dist.(kilometers)', 'Minimum Orbit Intersection', 'Jupiter Tisserand Invariant', 'Eccentricity', 'Semi Major Axis', 'Inclination', 'Asc Node Longitude', 'Orbital Period', 'Perihelion Distance', 'Perihelion Arg', 'Aphelion Dist', 'Mean Anomaly', 'Mean Motion']
 
 var column = "Absolute Magnitude"
 
@@ -84,6 +84,28 @@ var column = "Absolute Magnitude"
     })
     }
 
+    // define function to create the elipse
+    function createElipse(b) {
+        var elipseSize = [300, b*300];
+        var elipseY = Math.round(329+elipseSize[1]);
+
+        // select the orbit
+        d3.select("#orbit")
+        .attr("d", "M465," + 
+            elipseY +
+            " a" + 
+            elipseSize[0] + "," + elipseSize[1] + 
+            " 0 1,1 0.01,0 z")
+        
+        // select the asteroid
+        d3.select("#asteroid")
+        .style("offset-path", "path('M465," + 
+            elipseY +
+            " a" + 
+            elipseSize[0] + "," + elipseSize[1] +
+            " 0 1,1 0.01,0 z')")
+    }
+
     // Create Event Listeners
 
     // Meteor Dropdown
@@ -111,6 +133,11 @@ var column = "Absolute Magnitude"
             d3.select("#body5Ov").text(
                 "Orbit Uncertainity: " + data[0]["Orbit Uncertainity"]
             )
+
+            // set orbit
+            const ecc = data[0]["Eccentricity"];
+            const b = Math.sqrt(1 - ecc*ecc);
+            createElipse(b);
         })
 
     })

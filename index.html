@@ -39,11 +39,19 @@
                 <clipPath id="bigPicture">
                     <rect x="0" y="0" width="950" height="658" rx="15" fill=#00171f />
                 </clipPath>
-                <g clip-path="url(#bigPicture)">
+                <g clip-path="url(#bigPicture)">                
                 <rect x="0" y="0" width="950" height="658" rx="15" fill=#00171f />
                 <image x="0" y="0" width="100%" height="100%" href="images/spaceBackground.png" />
+
+                <!-- Orbit Path -->
+                <path d="M465,510 a300,200 0 1,1 0.01,0 z" fill="none" stroke="grey" stroke-width="1" stroke-dasharray="5,5" id="orbit"/>
+                <!-- Planet -->
                 <image x="44%" y="44%" width="10%" height="10%" href="images/earth.gif" />
-                <image x="44%" y="44%" width="10%" height="10%" href="images/meteor1.gif" id="meteor"/>
+                <!-- Asteroid -->
+                <g id="asteroid" transform="translate(-30, -30) scale(0.6)">
+                    <image x="0" y="0" href="images/asteroid1.gif" id="asteroidSprite"/>
+                </g>
+                <text x="20" y="35" font-size="25" font-family="Open Sans, Helvetica" fill="Gray">Orbit Visualizer</text>
                 </g>
             </svg>
 		</div>
