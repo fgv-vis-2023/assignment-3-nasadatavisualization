@@ -47,6 +47,41 @@ var column = "Absolute Magnitude"
         sidebar.selectAll('rect').remove()
         sidebar.selectAll('text').remove()
 
+        var Tooltip = d3.select(".tooltip")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style("position", "absolute")
+            .style("background-color", "Lavender")
+            .style("border", "solid")
+            .style("border-width", "2px")
+            .style("border-radius", "5px")
+            .style("padding", "5px");
+
+        var mouseover = function(d) {
+            Tooltip
+              .style("opacity", 1)
+            d3.select(this)
+              .style("stroke", "black")
+              .style("opacity", 1)
+        };
+
+        var mousemove = function(d) {
+            Tooltip
+                .text(column + ": " + d[column])
+                .style('font-family', "Open Sans, Helvetica")
+                .style('font-weight', "bold")
+                .style("top",  (event.pageY) + "px")
+                .style("left", (event.pageX) + "px")
+        };
+
+        var mouseleave = function(d) {
+            Tooltip
+                .style("opacity", 0)
+            d3.select(this)
+                .style("stroke", "none")
+                .style("opacity", 1)
+        };
+
         // position and populate the x-axis
         sidebar.append('g')
             .attr('transform', `translate(15, 432)`)
@@ -62,23 +97,25 @@ var column = "Absolute Magnitude"
                 .attr('width', d => columnScale(d[column]))
                 .attr('height', 18)
                 .attr('fill', d => d["Hazardous"] == "True" ? '#c1121f' : '#003459')
-            .append('title')
-                .text(d => "ID: " + d["Name"] + " Valor: " + d[column]);
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave)
         
         // Crete Side Bar Plot Title
         d3.select("#sideBarTitle")
             .text(column);
 
-        sidebar.append('g')
-            .attr("class", "value-label")
-            .selectAll('text')
-            .data(data)
-            .enter()
-            .append('text')
-                .attr('x', d => columnScale(d[column])+18)
-                .attr('y', (d, i) => i*20+64)
-                .text(d => Math.round(d[column]*100)/100)
-                .attr('fill', 'Gray');
+        // sidebar.append('g')
+        //     .attr("class", "value-label")
+        //     .selectAll('text')
+        //     .data(data)
+        //     .enter()
+        //     .append('text')
+        //         .attr('x', d => columnScale(d[column])+18)
+        //         .attr('y', (d, i) => i*20+64)
+        //         .text(d => Math.round(d[column]*100)/100)
+        //         .attr('fill', 'Gray')
+        //         .attr('font-family', "Open Sans, Helvetica");
 
         sidebar.append('g')
             .attr("class", "id-label")
@@ -89,7 +126,8 @@ var column = "Absolute Magnitude"
                 .attr('x', 18)
                 .attr('y', (d, i) => i*20+64)
                 .text(d => "ID: " + d["Name"])
-                .attr('fill', 'white');
+                .attr('fill', 'white')
+                .attr('font-family', "Open Sans, Helvetica");
     })
     }
 
