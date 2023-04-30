@@ -1,5 +1,22 @@
 // only relevant quantitative data
-const bar_vars = ['Absolute Magnitude', 'Est Dia in KM(min)', 'Est Dia in KM(max)', 'Relative Velocity km per sec', 'Miss Dist.(kilometers)', 'Minimum Orbit Intersection', 'Jupiter Tisserand Invariant', 'Eccentricity', 'Semi Major Axis', 'Inclination', 'Asc Node Longitude', 'Orbital Period', 'Perihelion Distance', 'Perihelion Arg', 'Aphelion Dist', 'Mean Anomaly', 'Mean Motion']
+const bar_vars = [
+    'Absolute Magnitude', 
+    'Estimated Diameter in Kilometers (min)', 
+    'Estimated Diameter in Kilometers (max)', 
+    'Relative Velocity (km/s)', 
+    'Miss Distance in Kilometers', 
+    'Minimum Orbit Intersection', 
+    'Jupiter Tisserand Invariant', 
+    'Orbit Eccentricity', 
+    'Orbit Semi-Major Axis', 
+    'Orbit Inclination', 
+    'Ascending Node Longitude', 
+    'Orbital Period', 
+    'Perihelion Distance', 
+    'Perihelion Argument', 
+    'Aphelion Distance', 
+    'Mean Anomaly', 
+    'Mean Motion']
 
 var column = "Absolute Magnitude"
 
