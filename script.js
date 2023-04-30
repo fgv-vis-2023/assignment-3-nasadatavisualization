@@ -98,7 +98,7 @@ var column = "Absolute Magnitude"
                 .style("stroke", "none")
                 .style("opacity", 1)
         };
-
+        
         // position and populate the x-axis
         sidebar.append('g')
             .attr('transform', `translate(15, 432)`)
@@ -186,17 +186,23 @@ var column = "Absolute Magnitude"
                 "Absolute Magnitude: " + data[0]["Absolute Magnitude"]
             )
             d3.select("#body2Ov").text(
-                "Estimated Diameter (km/max): " + data[0]["Estimated Diameter (km/max)"].slice(0, 5) + " km (max)"
+                "Estimated Diameter (km/max): " + data[0]["Estimated Diameter (km/max)"].slice(0, 5) + "km"
             )
+            
             d3.select("#body3Ov").text(
+                "Relative Velocity: " + data[0]["Relative Velocity (km/s)"].slice(0, 5) + "km/s"
+            )
+
+            d3.select("#body4Ov").text(
                 "Min. Orbit Intersection: " + data[0]["Minimum Orbit Intersection"].slice(0, 5)
             )
-            d3.select("#body4Ov").text(
+
+            d3.select("#body5Ov").text(
                 "Orbit Uncertainity: " + data[0]["Orbit Uncertainity"]
             )
 
             var Hazardous = data[0]["Hazardous"];
-            d3.select("#body5Ov")
+            d3.select("#body6Ov")
             .style("color", Hazardous == "True" ? "#c1121f" : "grey")
             .style("font-weight", Hazardous == "True" ? "bold" : "normal")
             .text(
