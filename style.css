@@ -198,6 +198,7 @@ button:active {
   }
   
 .hint {
+    line-height: 0.9;
     display: block;
     width: auto;
     background: none;
