@@ -4,7 +4,6 @@ const bar_vars = [
     'Estimated Diameter (km/min)', 
     'Estimated Diameter (km/max)', 
     'Relative Velocity (km/s)', 
-    'Miss Distance in Kilometers', 
     'Minimum Orbit Intersection', 
     'Jupiter Tisserand Invariant', 
     'Orbit Eccentricity', 
