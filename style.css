@@ -191,7 +191,12 @@ button:active {
     top: 185px;
     left: 20px;
   }
-
+  
+  #body6Ov {
+    top: 205px;
+    left: 20px;
+  }
+  
 .hint {
     display: block;
     width: auto;
