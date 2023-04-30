@@ -1,8 +1,8 @@
 // only relevant quantitative data
 const bar_vars = [
     'Absolute Magnitude', 
-    'Estimated Diameter in Kilometers (min)', 
-    'Estimated Diameter in Kilometers (max)', 
+    'Estimated Diameter (km/min)', 
+    'Estimated Diameter (km/max)', 
     'Relative Velocity (km/s)', 
     'Miss Distance in Kilometers', 
     'Minimum Orbit Intersection', 
@@ -186,7 +186,7 @@ var column = "Absolute Magnitude"
                 "Absolute Magnitude: " + data[0]["Absolute Magnitude"]
             )
             d3.select("#body2Ov").text(
-                "Est. Diameter (max): " + data[0]["Est Dia in KM(max)"].slice(0, 5) + " km (max)"
+                "Estimated Diameter (km/max): " + data[0]["Estimated Diameter (km/max)"].slice(0, 5) + " km (max)"
             )
             d3.select("#body3Ov").text(
                 "Min. Orbit Intersection: " + data[0]["Minimum Orbit Intersection"].slice(0, 5)
@@ -204,7 +204,7 @@ var column = "Absolute Magnitude"
             )
 
             // set orbit
-            const ecc = data[0]["Eccentricity"];
+            const ecc = data[0]["Orbit Eccentricity"];
             const b = Math.sqrt(1 - ecc*ecc);
             createElipse(b);
 
