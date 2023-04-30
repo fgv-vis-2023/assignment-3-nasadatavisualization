@@ -21,7 +21,7 @@ dt {
     line-height: 1.5;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
-    color: gray;   
+    color: #003459;   
   }
 
 
@@ -45,12 +45,19 @@ dd{
     border-radius: 15px;
     margin: 15px 30px;
 }
-  #title {
+#title {
     font-size: 64px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
     color: #003459;
     margin: 10px;
+}
+#title2 {
+    font-size: 36px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    color: #003459;
+    margin: 0 0 0 20px;
 }
 
 p {
