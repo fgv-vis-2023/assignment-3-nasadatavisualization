@@ -34,7 +34,6 @@ dd{
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
     color: gray;
-
 }
 
 
@@ -251,4 +250,9 @@ button:active {
 
 .hint:hover {
     text-decoration: underline;
+}
+
+#sources {
+    text-align: left;
+    margin: 10px 10px 10px 30px;
 }

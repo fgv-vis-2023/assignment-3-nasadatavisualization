@@ -18,6 +18,7 @@ const bar_vars = [
     'Mean Motion']
 
 var column = "Absolute Magnitude"
+var asteroid = "2000433"
 
     // define a function to load the data
     function loadData() {
@@ -42,15 +43,24 @@ var column = "Absolute Magnitude"
                 return d;
             })
 
-        // Sort Data
-        data = data
+        // Sort Data and select top 15
+        var top_data = data
             .sort((a, b) => b[column] - a[column])
-            .slice(0, 19);
+            .slice(0, 18);
+        // Get the selected asteroid
+        var selected = data.filter(d => d.Name == asteroid)[0];
+        // Make sure the selected asteroid is in the data
+        if (!top_data.includes(selected)) {
+            top_data.push(selected);
+        }
+        data = top_data;
+        console.log(data);
+        console.log(asteroid);
 
         // Create Column Scale
         var columnScale = d3.scaleLinear()
             .domain([0, d3.max(data, d => d[column])])
-            .range([0, 316-30]); // Offset to account for text
+            .range([0, 316-30]);  // Offset to account for text
 
         var xAxis = d3.scaleLinear()
             .domain([0, d3.max(data, d => d[column])])
@@ -121,18 +131,6 @@ var column = "Absolute Magnitude"
         d3.select("#sideBarTitle")
             .text(column);
 
-        // sidebar.append('g')
-        //     .attr("class", "value-label")
-        //     .selectAll('text')
-        //     .data(data)
-        //     .enter()
-        //     .append('text')
-        //         .attr('x', d => columnScale(d[column])+18)
-        //         .attr('y', (d, i) => i*20+64)
-        //         .text(d => Math.round(d[column]*100)/100)
-        //         .attr('fill', 'Gray')
-        //         .attr('font-family', "Open Sans, Helvetica");
-
         sidebar.append('g')
             .attr("class", "id-label")
             .selectAll('text')
@@ -143,6 +141,7 @@ var column = "Absolute Magnitude"
                 .attr('y', (d, i) => i*20+64)
                 .text(d => "ID: " + d["Name"])
                 .attr('fill', 'white')
+                .attr('font-weight', d => d["Name"] == asteroid ? "bold" : "normal")
                 .attr('font-family', "Open Sans, Helvetica");
     })
     }
@@ -173,6 +172,8 @@ var column = "Absolute Magnitude"
 
     // Asteroid Dropdown
     d3.select("#meteors").on("change", function() {
+        // get the selected asteroid
+        asteroid = d3.select("#meteors").node().value;
         // set title
         d3.select("#titleOv").text(
             "Asteroid: " + d3.select("#meteors").node().value.toUpperCase()
@@ -218,7 +219,7 @@ var column = "Absolute Magnitude"
             d3.select("#sun")
                 .attr("x", 90 + perihelion*250)
         })
-
+        loadData();
     })
 
     // Column Dropdown
