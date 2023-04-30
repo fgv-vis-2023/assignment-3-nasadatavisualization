@@ -4,7 +4,6 @@ const bar_vars = [
     'Est. Diameter (km/min)', 
     'Est. Diameter (km/max)', 
     'Relative Velocity (km/s)', 
-    'Miss Distance in Kilometers', 
     'Minimum Orbit Intersection', 
     'Jupiter Tisserand Invariant', 
     'Orbit Eccentricity', 
@@ -26,7 +25,7 @@ var column = "Absolute Magnitude"
         // Create Asteroid Dropdown
         d3.select("#meteors")
             .selectAll("option")
-            .data(data)
+            .data(data.sort((a, b) => d3.ascending(a.Name, b.Name))) // sort data by asteroid name
             .enter()
             .append("option")
             .text(function(d) {

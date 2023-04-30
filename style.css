@@ -16,7 +16,36 @@ body {
     height: 680px;
 }
 
-#title {
+dt {
+    margin: auto 10px;
+    line-height: 1.5;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    color: gray;   
+  }
+
+
+dd{
+    max-width: 900px; 
+    margin: 15px 30px;
+    display: block;
+    width: auto;
+    background: none;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    color: gray;
+
+}
+
+
+#dict {
+    width: 900px;
+    height: auto;
+    background-color: Lavender;
+    border-radius: 15px;
+    margin: 15px 30px;
+}
+  #title {
     font-size: 64px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
@@ -191,9 +220,15 @@ button:active {
     top: 185px;
     left: 20px;
   }
-
+  
+  #body6Ov {
+    top: 205px;
+    left: 20px;
+  }
+  
 .hint {
-    display: inline-block;
+    line-height: 0.9;
+    display: block;
     width: auto;
     background: none;
     cursor: help;
