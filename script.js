@@ -1,8 +1,8 @@
 // only relevant quantitative data
 const bar_vars = [
     'Absolute Magnitude', 
-    'Estimated Diameter (km/min)', 
-    'Estimated Diameter (km/max)', 
+    'Est. Diameter (km/min)', 
+    'Est. Diameter (km/max)', 
     'Relative Velocity (km/s)', 
     'Miss Distance in Kilometers', 
     'Minimum Orbit Intersection', 
@@ -186,7 +186,7 @@ var column = "Absolute Magnitude"
                 "Absolute Magnitude: " + data[0]["Absolute Magnitude"]
             )
             d3.select("#body2Ov").text(
-                "Estimated Diameter (km/max): " + data[0]["Estimated Diameter (km/max)"].slice(0, 5) + "km"
+                "Estimated Diameter (km/max): " + data[0]["Est. Diameter (km/max)"].slice(0, 5) + "km"
             )
             
             d3.select("#body3Ov").text(

@@ -193,7 +193,7 @@ button:active {
   }
 
 .hint {
-    display: block;
+    display: inline-block;
     width: auto;
     background: none;
     cursor: help;
@@ -203,7 +203,8 @@ button:active {
     font-family: 'Open Sans', sans-serif;
     color: gray;
     margin: 0 0 0 20px;
-    min-height: 12px;
+    min-height: 0px;
+    text-decoration: none;
 }
 
 .hint:hover {
